@@ -80,3 +80,28 @@ This lets floats represent both **large** and **small** numbers.
 - More operations on a float = more chance of inaccuracy.
 - Avoid reusing float results too often (“feedback” loops).
 - Prefer using **stable formulas** or even **integers** (like storing fractions as numerator/denominator).
+
+# 🧮 Fixed Point Numbers – Quick Summary
+
+**Fixed point numbers** represent fractional values using integers by fixing the position of the binary (fractional) point.
+
+## 🔧 How It Works
+- Format: `fixed<w, b>` → `w` total bits, `b` fractional bits.
+- Example: `fixed<8,3>` → 5 bits integer, 3 bits fraction.
+- Uses integer arithmetic with implicit scaling.
+- Bit shifts adjust value: left = ×2, right = ÷2.
+
+## ➕ Pros
+- 🚀 Fast: Uses integer math (great for DSP, games).
+- 🧰 Simple: No special hardware needed.
+
+## ➖ Cons
+- 🎯 Limited precision/range (trade-off between them).
+- ❌ No native support in C (but easy to implement).
+
+## ➖ Negative Values
+- Use **2’s complement**, same as integers.
+- All arithmetic operations still work (add, subtract, shift).
+
+## ✅ Summary
+Fixed point = fast & efficient real number handling using integer operations. Ideal when **performance > precision**.
