@@ -6,11 +6,10 @@
 /*   By: rshaheen <rshaheen@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/26 15:44:03 by rshaheen      #+#    #+#                 */
-/*   Updated: 2025/05/28 19:01:50 by rshaheen      ########   odam.nl         */
+/*   Updated: 2025/05/28 19:08:20 by rshaheen      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Fixed.cpp
 #include "Fixed.hpp"
 #include <iostream>
 
@@ -31,15 +30,16 @@ Fixed::Fixed(const Fixed& orgObject) //takes a ref to the original object
 // Fixed::operator=
 // This means defining the assignment operator for Fixed class.
 // operator= is a special function in C++ for doing a = b style copying.
+//"this" is a pointer to the object on the left-hand side of the assignment (a = b → a is this).
 
 Fixed& Fixed::operator=(const Fixed& orgObject) 
 {
     std::cout << "Copy assignment operator called" << std::endl;
-    if (this != &orgObject) 
+    if (this != &orgObject) //not trying to assign the object to itself
 	{
-        this->fixedPointValue = orgObject.getRawBits();
+        this->fixedPointValue = orgObject.getRawBits();//setting the fixedPointValue of the left-hand object to the value from the right-hand object.
     }
-    return (*this);
+    return (*this);//return a reference to the current object
 }
 
 // Destructor
