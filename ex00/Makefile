@@ -6,11 +6,11 @@
 #    By: rshaheen <rshaheen@student.42.fr>            +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/05/26 15:43:34 by rshaheen      #+#    #+#                  #
-#    Updated: 2025/05/26 16:55:50 by rshaheen      ########   odam.nl          #
+#    Updated: 2025/05/28 17:56:17 by rshaheen      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = 
+NAME = fixed
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++11
 
@@ -18,7 +18,7 @@ CC = c++
 
 OBJ_DIR = obj
 
-SRC = main.cpp .cpp
+SRC = main.cpp Fixed.cpp
 
 # Object files corresponding to the source files
 OBJECTS = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
