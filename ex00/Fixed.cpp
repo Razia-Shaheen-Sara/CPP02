@@ -6,7 +6,7 @@
 /*   By: rshaheen <rshaheen@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/26 15:44:03 by rshaheen      #+#    #+#                 */
-/*   Updated: 2025/05/28 18:49:53 by rshaheen      ########   odam.nl         */
+/*   Updated: 2025/05/28 19:01:50 by rshaheen      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,12 @@ int Fixed::getRawBits() const
     return (fixedPointValue);
 }
 
-// Setter for raw bits
+// Setter for raw bits-- made for later exercise
 void Fixed::setRawBits(int const raw) 
 {
     std::cout << "setRawBits member function called" << std::endl;
     fixedPointValue = raw;
 }
-
 
 
 //Why Use a Reference in a Copy Constructor?
