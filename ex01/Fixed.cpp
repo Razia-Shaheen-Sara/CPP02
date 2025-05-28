@@ -6,23 +6,18 @@
 /*   By: rshaheen <rshaheen@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/26 15:45:31 by rshaheen      #+#    #+#                 */
-/*   Updated: 2025/05/28 19:08:40 by rshaheen      ########   odam.nl         */
+/*   Updated: 2025/05/28 19:30:16 by rshaheen      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
 
-#include "Fixed.hpp"
-#include <iostream>
-
-// Default constructor
 Fixed::Fixed() : fixedPointValue(0) 
 {
     std::cout << "Default constructor called" << std::endl;
 }
 
-// Copy constructor
 Fixed::Fixed(const Fixed& orgObject) //takes a ref to the original object
 {
     std::cout << "Copy constructor called" << std::endl;
@@ -45,7 +40,7 @@ Fixed& Fixed::operator=(const Fixed& orgObject)
     return (*this);//return a reference to the current object
 }
 
-// Destructor
+
 Fixed::~Fixed() 
 {
     std::cout << "Destructor called" << std::endl;
