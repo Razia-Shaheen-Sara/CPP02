@@ -6,7 +6,7 @@
 /*   By: rshaheen <rshaheen@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/05/26 15:44:18 by rshaheen      #+#    #+#                 */
-/*   Updated: 2025/05/28 17:51:40 by rshaheen      ########   odam.nl         */
+/*   Updated: 2025/05/28 18:49:35 by rshaheen      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Fixed
     // Copy constructor: Makes a New Copy of an object
     Fixed(const Fixed& other);
 
-    // Copy assignment operator: Assign values to an existing object
+    // Copy assignment operator: Assign values from an original object to another existing object
     Fixed& operator=(const Fixed& other);
 
     // Destructor
