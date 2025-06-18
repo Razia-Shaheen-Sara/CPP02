@@ -13,24 +13,23 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-// Default constructor
+// Default constructor: creates an object
 Fixed::Fixed() : fixedPointValue(0) 
 {
     std::cout << "Default constructor called" << std::endl;
 }
 
-// Copy constructor
+// Copy constructor: copies the org/given object
 Fixed::Fixed(const Fixed& orgObject) //takes a ref to the original object
 {
     std::cout << "Copy constructor called" << std::endl;
     fixedPointValue = orgObject.getRawBits();
 }
 
-// Copy assignment operator returns a ref to the current object
-// Fixed::operator=
-// This means defining the assignment operator for Fixed class.
-// operator= is a special function in C++ for doing a = b style copying.
-//"this" is a pointer to the object on the left-hand side of the assignment (a = b → a is this).
+// Copy assignment operator assigns the value of org/given object to another object
+// Return a reference to the current object to allow chaining (e.g., a = b = c;)
+// operator= is a special function in C++ for doing a = b style assigning
+//"this" is a pointer to the object on the left-hand side of the assignment (a = b; 'a' is this).
 
 Fixed& Fixed::operator=(const Fixed& orgObject) 
 {
