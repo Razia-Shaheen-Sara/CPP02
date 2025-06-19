@@ -18,7 +18,7 @@ class Fixed
 {
 	private:
     int					fixedPointValue;
-    static const int	fractionalBitsNum = 8;
+    static const int	fractionalBitsVal = 8;//number of bits used after the binary point to represent the fraction part.
 
 	public:
 	
@@ -29,8 +29,8 @@ class Fixed
     Fixed& operator=(const Fixed& other);
     ~Fixed();
 
-	Fixed(const int int_convert); 
-	Fixed(const float float_convert); 
+	Fixed(const int int_num);  //constructor to convert the int to corresponding fixed point value
+	Fixed(const float float_num);  //constructor to convert the float to corresponding fixed point value
 
     int getRawBits(void) const;
     void setRawBits(int const raw);
@@ -39,9 +39,10 @@ class Fixed
 	
 };
 
-std::ostream& operator<<(std::ostream& out, const Fixed& obj);
+std::ostream& operator<<(std::ostream& out, const Fixed& obj);//custom function that inserts a float when given a fixed point 
 
 #endif
+
 
 //This operator overload enables--Clean and readable output for Fixed objects.
 //Conversion of internal fixed-point data into a standard floating-point format for display.

@@ -24,11 +24,10 @@ Fixed::Fixed(const Fixed& orgObject) //takes a ref to the original object
     fixedPointValue = orgObject.getRawBits();
 }
 
-// Copy assignment operator returns a ref to the current object
-// Fixed::operator=
-// This means defining the assignment operator for Fixed class.
-// operator= is a special function in C++ for doing a = b style copying.
-//"this" is a pointer to the object on the left-hand side of the assignment (a = b → a is this).
+// Copy assignment operator assigns the value of org/given object to another object
+// Return a reference to the current object to allow chaining (e.g., a = b = c;)
+// operator= is a special function in C++ for doing a = b style assigning
+//"this" is a pointer to the object on the left-hand side of the assignment (a = b; 'a' is this).
 
 Fixed& Fixed::operator=(const Fixed& orgObject) 
 {
@@ -40,6 +39,26 @@ Fixed& Fixed::operator=(const Fixed& orgObject)
     return (*this);//return a reference to the current object
 }
 
+//converts int_num to corresponding fixed point value
+//int_num << fractionalBitsVal means: Multiply int_num by 2^fractionalBitsVal(8) using a bit shift.
+//So corresponding fixedPointValue = int_num * (2^8)
+//Example: if int_num is 3, then fixedPointValue = 3 * (2^8) = 768
+
+Fixed::Fixed(const int int_num) : fixedPointValue(int_num << fractionalBitsVal)
+{
+	std::cout << "Int constructor called" << std::endl;
+}
+
+// Converts float_num to corresponding fixed-point value
+// float_num * (1 << fractionalBitsVal) means: Multiply float by 2^fractionalBitsVal (8) to scale it
+// roundf() is used to round the result to the nearest integer
+// So: fixedPointValue = round(float_num * (2^8))
+// Example: if float_num is 3.5, then fixedPointValue = round(3.5 * 256) = round(896.0) = 896
+
+Fixed::Fixed(const float float_num) : fixedPointValue(roundf(float_num*(1 << fractionalBitsVal)))
+{
+	std::cout << "Float constructor called" << std::endl;
+}
 
 Fixed::~Fixed() 
 {
@@ -49,7 +68,6 @@ Fixed::~Fixed()
 // Getter for raw bits
 int Fixed::getRawBits() const 
 {
-    std::cout << "getRawBits member function called" << std::endl;
     return (fixedPointValue);
 }
 
@@ -60,11 +78,32 @@ void Fixed::setRawBits(int const raw)
     fixedPointValue = raw;
 }
 
+// Converts fixed point value to float
+// Divide by 2^fractionalBitsVal (8)
+// So: float_value = fixedPointValue / (2^8)
+// Example: if fixedPointValue = 896, then float_value = 896 / 256 = 3.5
+float Fixed::toFloat(void) const
+{
+	return (static_cast<float>(fixedPointValue) / (1 << fractionalBitsVal));
+}
 
-//Why Use a Reference in a Copy Constructor?
-//If we didn’t use a reference and instead passed by value like this:
-//Fixed::Fixed(Fixed source) // ❌ Bad idea
-//It would create a copy of the object to pass it in…
-//Which would invoke another copy constructor to make that copy…
-//Which would again try to copy the object…
-//Leading to an infinite loop → 🔁 → 💥 Stack overflow!
+// Converts fixed-point value to int
+// Shift right by fractionalBitsVal (8) to remove the fractional part
+// This is like dividing by 2^8 and keeping only the whole number
+// Example: if fixedPointValue = 896, then result = 896 >> 8 = 3
+int Fixed::toInt(void) const
+{
+	int result = fixedPointValue >> fractionalBitsVal;
+	return (result);
+}
+
+// Overloads << operator to print Fixed objects
+// Converts Fixed to float using toFloat()
+// Inserts the float value into the output stream
+// So when you do: std::cout << fixedObj;
+// It prints the floating-point number stored in fixedObj
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
+{
+	out << fixed.toFloat();
+	return (out);
+}
